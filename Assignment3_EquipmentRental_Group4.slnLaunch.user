@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "EquipmentRentalApi\\EquipmentRentalApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "EquipmentRentalUI\\EquipmentRentalUI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

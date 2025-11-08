@@ -1,0 +1,44 @@
+﻿@model List<dynamic>
+@{
+    ViewData["Title"] = "Completed Rentals";
+}
+
+<div class="container mt-5">
+    <div class="dashboard-card">
+        <h3 class="text-success mb-3">✅ Completed Rentals</h3>
+        <a href="/Home/AdminDashboard" class="back-link mb-3 d-inline-block">⬅ Back</a>
+
+        <table class="table table-bordered table-striped table-hover shadow-sm mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Equipment ID</th>
+                    <th>Customer ID</th>
+                    <th>Issued At</th>
+                    <th>Returned At</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var rental in Model)
+                    {
+                        <tr>
+                            <td>@rental.id</td>
+                            <td>@rental.equipmentId</td>
+                            <td>@rental.customerId</td>
+                            <td>@Convert.ToDateTime(rental.issuedAt).ToString("yyyy-MM-dd HH:mm")</td>
+                            <td class="text-success fw-semibold">@Convert.ToDateTime(rental.returnedAt).ToString("yyyy-MM-dd HH:mm")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No completed rentals yet.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

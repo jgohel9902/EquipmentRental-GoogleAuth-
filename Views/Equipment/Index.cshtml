@@ -1,0 +1,61 @@
+﻿@model List<dynamic>
+
+@{
+    ViewData["Title"] = "Browse Equipment";
+}
+
+<h2 class="text-center mb-4">🛠️ Browse Equipment</h2>
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-end mb-3">
+        <a href="/Equipment/Add" class="btn btn-success">➕ Add Equipment</a>
+    </div>
+}
+<table class="table table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Condition</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                bool isAvailable = item.isAvailable;
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.category</td>
+                    <td>@item.description</td>
+                    <td>@item.condition</td>
+                    <td>$@item.rentalPrice</td>
+                    <td>
+                        @if (isAvailable)
+                        {
+                            <span class="badge bg-success">Available</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rented</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No equipment found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center mt-4">
+    <a href="/Home/UserDashboard" class="btn btn-secondary">⬅ Back to Dashboard</a>
+</div>
